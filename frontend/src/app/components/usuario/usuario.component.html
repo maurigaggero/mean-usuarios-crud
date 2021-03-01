@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h1>Formulario</h1>
+                <form #usuarioForm="ngForm" (ngSubmit)="addUsuario(usuarioForm)">
+
+                    <input type="hidden" name="_id" [(ngModel)]="usuarioService.usuarioSeleccionado._id">
+
+                    <div class="form-group">
+                        <input name="nombre" type="text" class="form-control" placeholder="Nombre y Apellido"
+                            [(ngModel)]="usuarioService.usuarioSeleccionado.nombre">
+                    </div>
+                    <div class="form-group">
+                        <select name="sexo" type="text" class="form-control" required
+                            [(ngModel)]="usuarioService.usuarioSeleccionado.sexo">
+                            <option selected disabled>Seleccione sexo</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input name="direccion" type="text" class="form-control" placeholder="Dirección"
+                            [(ngModel)]="usuarioService.usuarioSeleccionado.direccion">
+                    </div>
+                    <div class="form-group">
+                        <input name="ciudad" type="text" class="form-control" placeholder="Ciudad"
+                            [(ngModel)]="usuarioService.usuarioSeleccionado.ciudad">
+                    </div>
+                    <div class="form-group">
+                        <input name="correo" type="text" class="form-control" placeholder="Correo"
+                            [(ngModel)]="usuarioService.usuarioSeleccionado.correo">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Activo: </label>
+                        <input name="activo" type="checkbox" class="custom-checkbox" placeholder="Activo"
+                            [(ngModel)]="usuarioService.usuarioSeleccionado.activo">
+                    </div>
+
+                    <div class="btn-group btn-block">
+                        <button type="submit" class="btn btn-primary m-1">
+                            Guardar
+                        </button>
+                        <button type="reset" class="btn btn-secondary m-1">
+                            Limpiar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Sexo</th>
+                    <th>Dirección</th>
+                    <th>Ciudad</th>
+                    <th>Correo</th>
+                    <th>Activo</th>
+                    <th>Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usuario of usuarioService.usuarios">
+                    <td>{{usuario.nombre}}</td>
+                    <td>{{usuario.sexo}}</td>
+                    <td>{{usuario.direccion}}</td>
+                    <td>{{usuario.ciudad}}</td>
+                    <td>{{usuario.correo}}</td>
+                    <td *ngIf="usuario.activo == true; else elseBlock">
+                        <i class="material-icons">check</i>
+                    </td>
+                    <ng-template #elseBlock>
+                        <td> <i class="material-icons">close</i></td>
+                    </ng-template>
+                    <td>
+                        <button class="btn btn-sm btn-warning" (click)="editUsuario(usuario)">
+                            <i class="material-icons">edit</i>
+                        </button>
+                        <button class="btn btn-sm btn-danger" (click)="deleteUsuario(usuario._id)">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+###
+GET http://localhost:4000/api/usuarios
+
+###
+POST http://localhost:4000/api/usuarios
+Content-Type: application/json
+
+{
+   "nombre": "mauri",
+   "sexo": "M",
+   "direccion": "Gral Paz 1878",
+   "ciudad": "Rio Segundo",
+   "correo": "mauricio.gaggero@hotmail.com",
+   "activo": true
+}
+
+###
+GET http://localhost:4000/api/usuarios/603d304f68c0f53f809cdd72
+
+###
+PUT http://localhost:4000/api/usuarios/603d304f68c0f53f809cdd72
+Content-Type: application/json
+
+{
+    "ciudad": "Rio Segundo"
+}
+
+###
+DELETE http://localhost:4000/api/usuarios/603d304f68c0f53f809cdd72
